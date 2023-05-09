@@ -1,0 +1,41 @@
+[
+  {
+    "game": "American Roulette",
+    "title": "Roulette series",
+    "time": 150000,
+    "timelimit": "2 min 30 sec",
+    "goal": "You need to write the maximum denomination of how much the sector plays. Step 5, maximum is 200 progressive (DON'T WRITE THE REST)",
+    "bet": "Series (10)",
+    "numberOfBets": 10
+  },
+  [
+    {
+      "name": "voisins de zero",
+      "maxBet": 3400,
+      "critical": 2700,
+      "coefficientBeforeCritical": 9,
+      "coefficientAfterCritical": 7
+    },
+    {
+      "name": "zero spiel",
+      "maxBet": 1400,
+      "critical": 800,
+      "coefficientBeforeCritical": 4,
+      "coefficientAfterCritical": 3
+    },
+    {
+      "name": "orphelins",
+      "maxBet": 1800,
+      "critical": 1000,
+      "coefficientBeforeCritical": 5,
+      "coefficientAfterCritical": 4
+    },
+    {
+      "name": "tier",
+      "maxBet": 2400,
+      "critical": 2400,
+      "coefficientBeforeCritical": 6,
+      "coefficientAfterCritical": 6
+    }
+  ]
+]

@@ -1,0 +1,49 @@
+[
+  {
+    "game": "Texas Hold'em",
+    "title": "Texas Hold'em Bonus",
+    "time": 90000,
+    "timelimit": "1 min 30 sec",
+    "goal": "Calculate payout for BONUS BET for given combinations",
+    "bet": "Bonus (10)",
+    "numberOfBets": 10
+  },
+  [
+    {
+      "name": "pair of aces",
+      "coefficient": 7
+    },
+    {
+      "name": "two pairs",
+      "coefficient": 7
+    },
+    {
+      "name": "three of a kind",
+      "coefficient": 7
+    },
+    {
+      "name": "straight",
+      "coefficient": 7
+    },
+    {
+      "name": "flush",
+      "coefficient": 20
+    },
+    {
+      "name": "full-house",
+      "coefficient": 30
+    },
+    {
+      "name": "four of a kind",
+      "coefficient": 40
+    },
+    {
+      "name": "straight flush",
+      "coefficient": 50
+    },
+    {
+      "name": "royal flush",
+      "coefficient": 100
+    }
+  ]
+]

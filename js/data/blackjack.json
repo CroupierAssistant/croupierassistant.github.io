@@ -1,0 +1,17 @@
+[
+  {
+    "game": "Blackjack",
+    "title": "Blackjack",
+    "time": 60000,
+    "timelimit": "1 min",
+    "goal": "Calculate payout for given bets",
+    "bet": "Bet (10)",
+    "numberOfBets": 10
+  },
+  [
+    {
+      "name": "Blackjack",
+      "coefficient": 1.5
+    }
+  ]
+]

@@ -1,0 +1,45 @@
+[
+  {
+    "game": "Russian poker",
+    "title": "Russian poker ANTE",
+    "time": 90000,
+    "timelimit": "1 min 30 sec",
+    "goal": "Calculate payout for given combinations",
+    "bet": "ANTE (10)",
+    "numberOfBets": 10
+  },
+  [
+    {
+      "name": "two pairs",
+      "coefficient": 4
+    },
+    {
+      "name": "three of a kind",
+      "coefficient": 6
+    },
+    {
+      "name": "straight",
+      "coefficient": 8
+    },
+    {
+      "name": "flush",
+      "coefficient": 10
+    },
+    {
+      "name": "full-house",
+      "coefficient": 14
+    },
+    {
+      "name": "four of a kind",
+      "coefficient": 40
+    },
+    {
+      "name": "straight flush",
+      "coefficient": 100
+    },
+    {
+      "name": "royal flush",
+      "coefficient": 200
+    }
+  ]
+]

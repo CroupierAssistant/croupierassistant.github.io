@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="private" />
+    <title>Croupier Assistant</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/main.css?v=8" />
+
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+
+    <script src="js/timer.js?v=19" defer></script>
+    <script src="js/testTotal.js?v=15" defer></script>
+    <script src="js/saveResult.js?v=14" defer></script>
+    <script src="js/fetchGames.js?v=16" defer></script>
+    <script src="js/dbfunctions.js?v=28" defer></script>
+    <script src="js/auth.js?v=16" defer></script>
+    <script src="js/showRatings.js?v=8" defer></script>
+    <script src="js/main.js?v=17" defer></script>
+  </head>
+  <body>
+    <header id="appTitle">
+      <h1>Croupier Assistant</h1>
+      <img id="userIcon" src="./img/Loading_icon.gif" />
+
+      <div id="dropdown_user" style="display: none; height: 0px">
+        <button id="profile">Log in to your account to save statistics</button>
+        <button id="login" onclick="showOverflow()">Log in</button>
+        <button id="logout" onclick="logout()">Log out</button>
+      </div>
+    </header>
+    <div id="overflow">
+      <div id="loginPopup">
+        <h2>WELCOME</h2>
+        <div id="loginPopupHeader">
+          <div
+            id="headerRegister"
+            class="popup_header__button popup_button__active"
+          >
+            Register
+          </div>
+          <div id="headerSignIn" class="popup_header__button">Sign In</div>
+        </div>
+        <div id="registerForm" class="popupForm popupForm_active">
+          <form action="#" onsubmit="return false">
+            <div class="formItem">
+              <label for="newName">Username:</label>
+              <input id="newName" type="text" maxlength="20" required />
+            </div>
+            <div class="formItem">
+              <label for="newPass">Password:</label>
+              <input id="newPass" type="password" required />
+            </div>
+            <div class="formItem">
+              <label for="newPassRepeat">Repeat password:</label>
+              <input id="newPassRepeat" type="password" required />
+              <span id="message"></span>
+            </div>
+
+            <button type="submit" class="submit_login" onclick="register()">
+              CREATE NEW USER
+            </button>
+          </form>
+        </div>
+        <div id="signinForm" class="popupForm">
+          <form action="#" onsubmit="return false">
+            <div class="formItem">
+              <label for="getName">Username:</label>
+              <input id="getName" type="text" required />
+            </div>
+            <div class="formItem">
+              <label for="getPass">Password:</label>
+              <input id="getPass" type="password" required />
+              <span id="messageLogin"></span>
+            </div>
+
+            <button type="submit" class="submit_login" onclick="login()">
+              SIGN IN
+            </button>
+          </form>
+        </div>
+      </div>
+      <div id="closeOverflow">Close</div>
+    </div>
+
+    <div id="linkList">
+      <a id="roulette-pictures" onclick="fetchData(this.id)" href="#"
+        >Roulette pictures <img src="./img/casino_roulette_icon.png"
+      /></a>
+      <a id="roulette-sector" onclick="fetchData(this.id)" href="#"
+        >Roulette series <img src="./img/casino_roulette_icon.png"
+      /></a>
+      <a id="blackjack" onclick="fetchData(this.id)" href="#"
+        >Blackjack <img src="./img/blackjack_icon.png"
+      /></a>
+      <a id="russian-poker" onclick="fetchData(this.id)" href="#"
+        >Russian poker <img src="./img/poker.png"
+      /></a>
+      <a id="russian-poker-bonus" onclick="fetchData(this.id)" href="#"
+        >Russian poker Bonus <img src="./img/poker.png"
+      /></a>
+      <a id="uth-blind" onclick="fetchData(this.id)" href="#"
+        >UTH blind bets<img src="./img/uth.png"
+      /></a>
+      <a id="uth-trips" onclick="fetchData(this.id)" href="#"
+        >UTH trips bets<img src="./img/uth.png"
+      /></a>
+      <a id="texas-holdem-bonus" onclick="fetchData(this.id)" href="#"
+        >Texas Hold'em bonus <img src="./img/texas.png"
+      /></a>
+
+      <span id="resolution"></span>
+    </div>
+
+    <div id="game-descr" style="display: none">
+      <div id="ratings"></div>
+      <div id="description">
+        <p>
+          <span class="descr-label">Game:</span> <span id="game">Content</span>
+        </p>
+        <p>
+          <span class="descr-label">Bet:</span> <span id="bets">Content</span>
+        </p>
+        <p>
+          <span class="descr-label">Goal:</span> <span id="goal">Content</span>
+        </p>
+        <p>
+          <span class="descr-label">Time limit:</span>
+          <span id="timelimit">Content</span>
+        </p>
+      </div>
+      <button id="start-button" onclick="startGame()">Start</button>
+    </div>
+
+    <div id="game-content" style="display: none">
+      <header>
+        <span id="back-btn" onclick="goBack()">Back</span>
+        <h1 id="game-title"></h1>
+        <div id="testTimer"></div>
+      </header>
+
+      <div id="layout"></div>
+
+      <div id="keyboard">
+        <input class="div1 digit" id="answer-input" disabled />
+        <button class="div2 digit backspace" onclick="typeDigit(this)">
+          del
+        </button>
+        <button class="div3 digit" onclick="typeDigit(this)">1</button>
+        <button class="div4 digit" onclick="typeDigit(this)">2</button>
+        <button class="div5 digit" onclick="typeDigit(this)">3</button>
+        <button class="div6 digit" onclick="typeDigit(this)">4</button>
+        <button class="div7 digit" onclick="typeDigit(this)">5</button>
+        <button class="div8 digit" onclick="typeDigit(this)">6</button>
+        <button class="div9 digit" onclick="typeDigit(this)">7</button>
+        <button class="div10 digit" onclick="typeDigit(this)">8</button>
+        <button class="div11 digit" onclick="typeDigit(this)">9</button>
+        <button class="div12 digit dot" onclick="typeDigit(this)">.</button>
+        <button class="div13 digit" onclick="typeDigit(this)">0</button>
+        <button
+          class="div14 digit submit"
+          style="background: #7ed97e; color: #000"
+          onclick="typeDigit(this)"
+        >
+          ok
+        </button>
+      </div>
+    </div>
+
+    <div id="testResult" style="display: none">
+      <table border="1">
+        <thead>
+          <tr>
+            <td>Time</td>
+            <td colspan="2" id="calculationTime"></td>
+          </tr>
+          <tr>
+            <td>Bet</td>
+            <td>Right answer</td>
+            <td>Your answer</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">Correct answers</td>
+            <td id="correctPercent"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <button id="back-button" onclick="goBack()">Go back</button>
+    </div>
+  </body>
+</html>

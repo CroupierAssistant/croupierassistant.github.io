@@ -1,0 +1,51 @@
+[
+  {
+    "game": "Ultimate Texas Hold'em",
+    "title": "UTH Blind",
+    "time": 120000,
+    "timelimit": "2 min",
+    "goal": "Calculate payout for BLIND BET for given combinations",
+    "bet": "Blind (10)",
+    "numberOfBets": 10
+  },
+  [
+    {
+      "name": "straight",
+      "coefficient": 1
+    },
+    {
+      "name": "flush",
+      "coefficient": 1.5
+    },
+    {
+      "name": "full-house",
+      "coefficient": 3
+    },
+    {
+      "name": "four of a kind",
+      "coefficient": 10
+    },
+    {
+      "name": "straight flush",
+      "coefficient": 50
+    },
+    {
+      "name": "royal flush",
+      "coefficient": 500
+    }
+  ],
+  {
+    "name": "Ultimate Texas Hold'em",
+    "firstCol": "Blind",
+    "secondCol": "Trips",
+    "combinations": [
+      { "name": "Three of a kind", "firstCol": "", "secondCol": 3 },
+      { "name": "Straight", "firstCol": 1, "secondCol": 4 },
+      { "name": "Flush", "firstCol": 1.5, "secondCol": 7 },
+      { "name": "Full house", "firstCol": 3, "secondCol": 8 },
+      { "name": "Four of a kind", "firstCol": 10, "secondCol": 30 },
+      { "name": "Straight flush", "firstCol": 50, "secondCol": 40 },
+      { "name": "Royal flush", "firstCol": 500, "secondCol": 50 }
+    ]
+  }
+]

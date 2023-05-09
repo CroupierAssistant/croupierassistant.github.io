@@ -1,0 +1,50 @@
+[
+  {
+    "game": "Russian poker",
+    "title": "Russian poker Bonus",
+    "time": 90000,
+    "timelimit": "1 min 30 sec",
+    "goal": "Calculate payout for BONUS (6 card) for given combinations",
+    "bet": "Bonus (6-card) (10)",
+    "numberOfBets": 10
+  },
+  [
+    {
+      "name": "straight",
+      "coefficient": 8
+    },
+    {
+      "name": "flush",
+      "coefficient": 15
+    },
+    {
+      "name": "full-house",
+      "coefficient": 30
+    },
+    {
+      "name": "four of a kind",
+      "coefficient": 100
+    },
+    {
+      "name": "straight flush",
+      "coefficient": 150
+    },
+    {
+      "name": "royal flush",
+      "coefficient": 300
+    }
+  ],
+  {
+    "name": "Russian poker bonus",
+    "firstCol": "5 card",
+    "secondCol": "6 card",
+    "combinations": [
+      { "name": "Straight", "firstCol": 25, "secondCol": 8 },
+      { "name": "Flush", "firstCol": 50, "secondCol": 15 },
+      { "name": "Full house", "firstCol": 100, "secondCol": 30 },
+      { "name": "Four of a kind", "firstCol": 300, "secondCol": 100 },
+      { "name": "Straight flush", "firstCol": 500, "secondCol": 150 },
+      { "name": "Royal flush", "firstCol": 1000, "secondCol": 300 }
+    ]
+  }
+]

@@ -1,0 +1,55 @@
+[
+  {
+    "game": "Ultimate Texas Hold'em",
+    "title": "UTH Trips",
+    "time": 90000,
+    "timelimit": "1 min 30 sec",
+    "goal": "Calculate payout for TRIPS BET for given combinations",
+    "bet": "Trips (10)",
+    "numberOfBets": 10
+  },
+  [
+    {
+      "name": "three of a kind",
+      "coefficient": 3
+    },
+    {
+      "name": "straight",
+      "coefficient": 4
+    },
+    {
+      "name": "flush",
+      "coefficient": 7
+    },
+    {
+      "name": "full-house",
+      "coefficient": 8
+    },
+    {
+      "name": "four of a kind",
+      "coefficient": 30
+    },
+    {
+      "name": "straight flush",
+      "coefficient": 40
+    },
+    {
+      "name": "royal flush",
+      "coefficient": 50
+    }
+  ],
+  {
+    "name": "Ultimate Texas Hold'em",
+    "firstCol": "Blind",
+    "secondCol": "Trips",
+    "combinations": [
+      { "name": "Three of a kind", "firstCol": "", "secondCol": 3 },
+      { "name": "Straight", "firstCol": 1, "secondCol": 4 },
+      { "name": "Flush", "firstCol": 1.5, "secondCol": 7 },
+      { "name": "Full house", "firstCol": 3, "secondCol": 8 },
+      { "name": "Four of a kind", "firstCol": 10, "secondCol": 30 },
+      { "name": "Straight flush", "firstCol": 50, "secondCol": 40 },
+      { "name": "Royal flush", "firstCol": 500, "secondCol": 50 }
+    ]
+  }
+]

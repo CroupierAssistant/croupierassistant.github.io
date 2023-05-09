@@ -1,0 +1,34 @@
+[
+  {
+    "game": "Roulette payout via cash",
+    "title": "Roulette payout via cash",
+    "time": 120,
+    "timelimit": "2 min",
+    "goal": "Given the denomination of the color, the payout in chips and how much cash the guest wants to get. Write the remains of color chips.",
+    "bet": "Bet (10)",
+    "numberOfBets": 10
+  },
+  
+  [
+    {
+      "name": "Color by 2",
+      "coefficient": 2
+    },
+    {
+      "name": "Color by 5",
+      "coefficient": 5
+    },
+    {
+      "name": "Color by 10",
+      "coefficient": 10
+    },
+    {
+      "name": "Color by 25",
+      "coefficient": 25
+    },
+    {
+      "name": "Color by 50",
+      "coefficient": 50
+    }
+  ]
+]
