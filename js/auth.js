@@ -123,6 +123,8 @@ const register = () => {
           });
 
         overflow.style.display = 'none'
+        location.href = "/";
+
       } else if (!password) {
         document.getElementById('message').style.color = 'red';
         document.getElementById('message').innerHTML = "Password can not be empty";
@@ -171,8 +173,8 @@ const login = () => {
 }
 
 const logout = () => {
-  const linklist = document.querySelector('#linkList')
   localStorage.removeItem('username');
+  const linklist = document.querySelector('#linkList')
   linklist.style.display = 'none'
   dropDown.style.display = 'none'
   dropDown.style.height = '0px'
