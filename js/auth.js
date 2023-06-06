@@ -123,7 +123,6 @@ const register = () => {
           });
 
         overflow.style.display = 'none'
-        window.location.replace("/");
 
       } else if (!password) {
         document.getElementById('message').style.color = 'red';
