@@ -168,7 +168,9 @@ const login = () => {
 }
 
 const logout = () => {
-  localStorage.setItem('username', '');
+  const linklist = document.querySelector('#linkList')
+  localStorage.removeItem('username');
+  linklist.style.display = 'none'
   dropDown.style.display = 'none'
   dropDown.style.height = '0px'
   checkUser()
