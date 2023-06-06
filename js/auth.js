@@ -1,5 +1,5 @@
 const checkUser = () => {
-  let username = localStorage.getItem('username').trim() || '';
+  let username = localStorage.getItem('username')?.trim();
   const linklist = document.querySelector('#linkList')
 
   if (!username) {
