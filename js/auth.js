@@ -1,13 +1,14 @@
 const checkUser = () => {
   let username = localStorage.getItem('username').trim();
+  const linklist = document.querySelector('#linkList')
 
   if (!username) {
-    const linklist = document.querySelector('#linkList')
     linklist.style.display = 'none'
     document.body.classList.remove('authorized')
     document.getElementById('userIcon').setAttribute('src', '../../img/user_out.png')
     document.getElementById('profile').innerHTML = 'Log in to your account to save statistics'
   } else {
+    linklist.style.display = 'flex'
     document.body.classList.add('authorized')
     document.getElementById('userIcon').setAttribute('src', '../../img/user_in.png')
     document.getElementById('profile').innerHTML = username
