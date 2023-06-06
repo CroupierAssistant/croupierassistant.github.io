@@ -19,10 +19,13 @@ function getMachineId() {
 }
 function getUsername() {
   let username = localStorage.getItem("username").trim();
+  const linklist = document.querySelector('#linkList')
 
   if (!username) {
+    linklist.style.display = 'none'
     return false;
   }
+  linklist.style.display = 'flex'
   return username;
 }
 
