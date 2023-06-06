@@ -123,7 +123,7 @@ const register = () => {
           });
 
         overflow.style.display = 'none'
-        location.href = "/";
+        window.location.replace("/");
 
       } else if (!password) {
         document.getElementById('message').style.color = 'red';
@@ -179,5 +179,5 @@ const logout = () => {
   dropDown.style.display = 'none'
   dropDown.style.height = '0px'
   checkUser()
-  location.href = "/";
+  window.location.replace("/");
 }
