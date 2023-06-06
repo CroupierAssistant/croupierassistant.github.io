@@ -2,6 +2,8 @@ const checkUser = () => {
   let username = localStorage.getItem('username').trim();
 
   if (!username) {
+    const linklist = document.querySelector('#linkList')
+    linklist.style.display = 'none'
     document.body.classList.remove('authorized')
     document.getElementById('userIcon').setAttribute('src', '../../img/user_out.png')
     document.getElementById('profile').innerHTML = 'Log in to your account to save statistics'
