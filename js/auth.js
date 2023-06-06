@@ -113,9 +113,6 @@ const register = () => {
 
           .then((docRef) => {
 
-            setTimeout(() => {
-              checkUser()
-            }, 500)
             console.log("New user added");
           })
           .catch((error) => {
@@ -123,6 +120,9 @@ const register = () => {
           });
 
         overflow.style.display = 'none'
+        setTimeout(() => {
+          checkUser()
+        }, 500)
 
       } else if (!password) {
         document.getElementById('message').style.color = 'red';
