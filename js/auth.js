@@ -104,6 +104,7 @@ const register = () => {
         document.getElementById('message').innerHTML = 'Passwords match';
         setTimeout(() => {
           localStorage.setItem('username', username);
+          checkUser()
         }, 500)
         db.collection('users').doc(username).set({
           username: username,
