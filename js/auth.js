@@ -1,9 +1,15 @@
+// User buttons handlers
+const userIcon = document.getElementById('userIcon')
+const dropDown = document.getElementById('dropdown_user')
+
 const checkUser = () => {
   let username = localStorage.getItem('username')?.trim();
   const linklist = document.querySelector('#linkList')
 
   if (!username) {
     linklist.style.display = 'none'
+    dropDown.style.display = dropDown.style.display === 'none' ? 'flex' : 'none'
+    dropDown.style.height = dropDown.style.height === '0px' ? 'auto' : '0px'
     document.body.classList.remove('authorized')
     document.getElementById('userIcon').setAttribute('src', '../../img/user_out.png')
     document.getElementById('profile').innerHTML = 'Log in to your account to save statistics'
@@ -15,10 +21,6 @@ const checkUser = () => {
   }
   return username;
 }
-
-// User buttons handlers
-const userIcon = document.getElementById('userIcon')
-const dropDown = document.getElementById('dropdown_user')
 
 userIcon.addEventListener('click', function () {
   console.dir('');
