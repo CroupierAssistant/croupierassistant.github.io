@@ -177,4 +177,5 @@ const logout = () => {
   dropDown.style.display = 'none'
   dropDown.style.height = '0px'
   checkUser()
+  location.href = "/";
 }
