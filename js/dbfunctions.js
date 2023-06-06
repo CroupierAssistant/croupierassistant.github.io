@@ -88,65 +88,65 @@ const saveData = (game, percentage, time) => {
       console.error("Error adding document: ", error);
     });
 
-  var docDaily = db.collection("dailyUsage").doc(formattedDate).collection(getUsername() ? getUsername() : getMachineId()).doc(game);
-  var docDailyByGame = db.collection("dailyUsageByGame").doc(formattedDate).collection(game).doc('totalTries');
+  // var docDaily = db.collection("dailyUsage").doc(formattedDate).collection(getUsername() ? getUsername() : getMachineId()).doc(game);
+  // var docDailyByGame = db.collection("dailyUsageByGame").doc(formattedDate).collection(game).doc('totalTries');
 
-  docDailyByGame.get().then((doc) => {
-    if (doc.exists) {
-      var usageValueByGame = Number(doc.data().usage)
+  // docDailyByGame.get().then((doc) => {
+  //   if (doc.exists) {
+  //     var usageValueByGame = Number(doc.data().usage)
 
-      db.collection("dailyUsageByGame")
-        .doc(formattedDate)
-        .collection(game)
-        .doc('totalTries')
-        .set({ usage: getUsername() === 'test' ? usageValueByGame : usageValueByGame + 1 })
-        .then((docRef) => {
-          console.log("Document written");
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        });
+  //     db.collection("dailyUsageByGame")
+  //       .doc(formattedDate)
+  //       .collection(game)
+  //       .doc('totalTries')
+  //       .set({ usage: getUsername() === 'test' ? usageValueByGame : usageValueByGame + 1 })
+  //       .then((docRef) => {
+  //         console.log("Document written");
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error adding document: ", error);
+  //       });
 
-    } else {
-      db.collection("dailyUsageByGame")
-        .doc(formattedDate)
-        .collection(game)
-        .doc('totalTries')
-        .set({ usage: getUsername() === 'test' ? 0 : 1 })
-        .then((docRef) => {
-          console.log("Document written");
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        });
-    }
-  })
+  //   } else {
+  //     db.collection("dailyUsageByGame")
+  //       .doc(formattedDate)
+  //       .collection(game)
+  //       .doc('totalTries')
+  //       .set({ usage: getUsername() === 'test' ? 0 : 1 })
+  //       .then((docRef) => {
+  //         console.log("Document written");
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error adding document: ", error);
+  //       });
+  //   }
+  // })
 
-  docDaily.get().then((doc) => {
-    if (doc.exists) {
-      var usageValue = Number(doc.data().usage)
-      db.collection("dailyUsage")
-        .doc(formattedDate)
-        .collection(getUsername() ? getUsername() : getMachineId())
-        .doc(game).set({ usage: usageValue + 1 })
-        .then((docRef) => {
-          console.log("Document written");
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        });
+  // docDaily.get().then((doc) => {
+  //   if (doc.exists) {
+  //     var usageValue = Number(doc.data().usage)
+  //     db.collection("dailyUsage")
+  //       .doc(formattedDate)
+  //       .collection(getUsername() ? getUsername() : getMachineId())
+  //       .doc(game).set({ usage: usageValue + 1 })
+  //       .then((docRef) => {
+  //         console.log("Document written");
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error adding document: ", error);
+  //       });
 
-    } else {
-      db.collection("dailyUsage")
-        .doc(formattedDate)
-        .collection(getUsername() ? getUsername() : getMachineId())
-        .doc(game).set({ usage: 1 })
-        .then((docRef) => {
-          console.log("Document written");
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        });
-    }
-  })
+  //   } else {
+  //     db.collection("dailyUsage")
+  //       .doc(formattedDate)
+  //       .collection(getUsername() ? getUsername() : getMachineId())
+  //       .doc(game).set({ usage: 1 })
+  //       .then((docRef) => {
+  //         console.log("Document written");
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error adding document: ", error);
+  //       });
+  //   }
+  // })
 };
