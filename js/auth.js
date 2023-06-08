@@ -79,12 +79,15 @@ var checkPass = function () {
 
 var nameInput = document.getElementById('newName');
 
-nameInput.addEventListener('keypress', function ( event ) {  
-   var key = event.keyCode;
-    if (key === 32) {
-      event.preventDefault();
-    }
-});
+// nameInput.addEventListener('keypress', function ( event ) {  
+//    var key = event.keyCode;
+//     if (key === 32) {
+//       event.preventDefault();
+//     }
+// });
+nameInput.addEventListener('input', function(e){
+  nameInput.value.replaceAll(' ','')
+})
 
 const register = () => {
   var username = document.getElementById('newName').value.trim()
