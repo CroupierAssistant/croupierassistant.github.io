@@ -86,6 +86,9 @@ nameInput.addEventListener('keypress', function ( event ) {
     }
 });
 
+function validateInput(input) {
+  input.value = input.value.replace(/[^a-zA-Z]/g, '');
+}
 
 const register = () => {
   var username = document.getElementById('newName').value.trim()
