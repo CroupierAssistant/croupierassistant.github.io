@@ -86,7 +86,7 @@ var nameInput = document.getElementById('newName');
 //     }
 // });
 nameInput.addEventListener('input', function(e){
-  nameInput.value.replaceAll(' ','')
+  this.value.replaceAll(' ','')
 })
 
 const register = () => {
