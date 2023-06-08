@@ -85,7 +85,7 @@ var nameInput = document.getElementById('newName');
 //       event.preventDefault();
 //     }
 // });
-nameInput.addEventListener('change', function(e){
+nameInput.addEventListener('change', function(){
   this.value.replaceAll(' ','')
 })
 
