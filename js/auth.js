@@ -79,15 +79,15 @@ var checkPass = function () {
 
 var nameInput = document.getElementById('newName');
 
-nameInput.addEventListener('keypress', function ( event ) {  
-   var key = event.keyCode;
-    if (key === 32) {
-      event.preventDefault();
-    }
-});
+// nameInput.addEventListener('keypress', function ( event ) {  
+//    var key = event.keyCode;
+//     if (key === 32) {
+//       event.preventDefault();
+//     }
+// });
 
 function validateInput(input) {
-  input.value = input.value.replace(/[^a-zA-Z]/g, '');
+  input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
 }
 
 const register = () => {
