@@ -38,7 +38,7 @@ let formattedDate = date.toLocaleDateString("en-US", {
   month: "2-digit",
   year: "numeric"
 });
-formattedDate = `${formattedDate} ${date.toString().slice(16, 33)}`
+formattedDate = `${formattedDate} ${date.toString().slice(16, 33)}`.replaceAll('/', '.')
 
 const saveData = (game, percentage, time) => {
   var percents = +percentage.slice(0, -1);
