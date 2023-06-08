@@ -33,7 +33,7 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 
 let date = new Date();
-let formattedDate = date.toLocaleDateString("ru-RU", {
+let formattedDate = date.toLocaleDateString("en-US", {
   day: "2-digit",
   month: "2-digit",
   year: "numeric"
