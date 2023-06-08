@@ -38,6 +38,7 @@ let formattedDate = date.toLocaleDateString("en-US", {
   month: "2-digit",
   year: "numeric"
 });
+formattedDate = `${formattedDate} ${date.toString().slice(16, 33)}`
 
 const saveData = (game, percentage, time) => {
   var percents = +percentage.slice(0, -1);
@@ -45,18 +46,18 @@ const saveData = (game, percentage, time) => {
   db.collection("tests")
     .doc(game)
     .collection(getUsername() ? getUsername() : getMachineId())
-    .doc(`${formattedDate} ${date.toString().slice(16, 33)}`)
+    .doc(formattedDate)
     .set({
       game: game,
       correctAnswers: percents,
       timeSpent: time,
-      timeAt: date.toString().slice(16, -12)
+      timeAt: formattedDate
     })
     .then((docRef) => {
       if (getUsername()) {
         db.collection("users")
           .doc(getUsername())
-          .update({ lastVisit: `${new Date()}` });
+          .update({ lastVisit: formattedDate });
 
         if (percents === 100) {
           var docExist = db.collection(game).doc(getUsername());
@@ -69,14 +70,14 @@ const saveData = (game, percentage, time) => {
                   db.collection(game).doc(getUsername()).set({
                     username: getUsername(),
                     time: time,
-                    timeCode: `${formattedDate} ${date.toString().slice(16, 33)}`
+                    timeCode: formattedDate
                   });
                 }
               } else {
                 db.collection(game).doc(getUsername()).set({
                   username: getUsername(),
                   time: time,
-                  timeCode: `${formattedDate} ${date.toString().slice(16, 33)}`
+                  timeCode: formattedDate
                 });
               }
             })
