@@ -19,20 +19,20 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/main.css?v=2" />
+    <link rel="stylesheet" href="./css/main.css?v=8" />
 
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
 
-    <script src="js/timer.js?v=2" defer></script>
-    <script src="js/testTotal.js?v=2" defer></script>
-    <script src="js/saveResult.js?v=2" defer></script>
-    <script src="js/fetchGames.js?v=2" defer></script>
-    <script src="js/dbfunctions.js?v=2" defer></script>
-    <script src="js/auth.js?v=2" defer></script>
-    <script src="js/showRatings.js?v=2" defer></script>
-    <script src="js/main.js?v=2" defer></script>
+    <script src="js/timer.js?v=19" defer></script>
+    <script src="js/testTotal.js?v=15" defer></script>
+    <script src="js/saveResult.js?v=14" defer></script>
+    <script src="js/fetchGames.js?v=16" defer></script>
+    <script src="js/dbfunctions.js?v=28" defer></script>
+    <script src="js/auth.js?v=16" defer></script>
+    <script src="js/showRatings.js?v=8" defer></script>
+    <script src="js/main.js?v=17" defer></script>
   </head>
   <body>
     <header id="appTitle">
@@ -49,14 +49,19 @@
       <div id="loginPopup">
         <h2>WELCOME</h2>
         <div id="loginPopupHeader">
-          <!-- <div id="headerRegister" class="popup_header__button popup_button__active" > Register </div> -->
+          <div
+            id="headerRegister"
+            class="popup_header__button popup_button__active"
+          >
+            Register
+          </div>
           <div id="headerSignIn" class="popup_header__button">Sign In</div>
         </div>
-        <!-- <div id="registerForm" class="popupForm popupForm_active">
+        <div id="registerForm" class="popupForm popupForm_active">
           <form action="#" onsubmit="return false">
             <div class="formItem">
               <label for="newName">Username:</label>
-              <input id="newName" onpaste="return false;" oninput="validateInput(this)" type="text" maxlength="20" required />
+              <input id="newName" type="text" maxlength="20" required />
             </div>
             <div class="formItem">
               <label for="newPass">Password:</label>
@@ -72,8 +77,8 @@
               CREATE NEW USER
             </button>
           </form>
-        </div> -->
-        <div id="signinForm" class="popupForm popupForm_active">
+        </div>
+        <div id="signinForm" class="popupForm">
           <form action="#" onsubmit="return false">
             <div class="formItem">
               <label for="getName">Username:</label>

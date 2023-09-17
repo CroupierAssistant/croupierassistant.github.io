@@ -1011,7 +1011,7 @@ body.authorized #dropdown_user #login {
   position: relative;
   width: 100%;
 }
-/* #loginPopupHeader::before {
+#loginPopupHeader::before {
   content: "";
   position: absolute;
   height: 100%;
@@ -1019,7 +1019,7 @@ body.authorized #dropdown_user #login {
   background: #fff;
   top: 50%;
   transform: translateY(-50%);
-} */
+}
 
 .popup_header__button {
   width: 50%;

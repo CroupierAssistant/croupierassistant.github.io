@@ -69,6 +69,7 @@ function startTimer() {
       // onTimesUp();
       testTotal();
     }
+    console.log(formatTime(timeLeft), formatTime(timePassed, 'short'));
   }, 10);
 }
 
@@ -82,6 +83,16 @@ function formatTime(time, mode) {
     : `${minutes}:${seconds}.${milliseconds}`
 
 }
+// function formatTime(time) {
+//   var minutes = Math.floor(time / 60000);
+//   var seconds = Math.floor((time % 60000) / 1000);
+
+//   if (seconds < 10) {
+//     seconds = `0${seconds}`;
+//   }
+
+//   return `${minutes}:${seconds}`;
+// }
 
 function setRemainingPathColor(timeLeft) {
   let { alert, warning, info } = COLOR_CODES;

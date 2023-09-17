@@ -1,26 +1,21 @@
-// User buttons handlers
-const userIcon = document.getElementById('userIcon')
-const dropDown = document.getElementById('dropdown_user')
-
 const checkUser = () => {
-  let username = localStorage.getItem('username')?.trim();
-  const linklist = document.querySelector('#linkList')
+  let username = localStorage.getItem('username').trim();
 
   if (!username) {
-    linklist.style.display = 'none'
-    dropDown.style.display = dropDown.style.display === 'none' ? 'flex' : 'none'
-    dropDown.style.height = dropDown.style.height === '0px' ? 'auto' : '0px'
     document.body.classList.remove('authorized')
     document.getElementById('userIcon').setAttribute('src', '../../img/user_out.png')
     document.getElementById('profile').innerHTML = 'Log in to your account to save statistics'
   } else {
-    linklist.style.display = 'flex'
     document.body.classList.add('authorized')
     document.getElementById('userIcon').setAttribute('src', '../../img/user_in.png')
     document.getElementById('profile').innerHTML = username
   }
   return username;
 }
+
+// User buttons handlers
+const userIcon = document.getElementById('userIcon')
+const dropDown = document.getElementById('dropdown_user')
 
 userIcon.addEventListener('click', function () {
   console.dir('');
@@ -79,16 +74,12 @@ var checkPass = function () {
 
 var nameInput = document.getElementById('newName');
 
-// nameInput.addEventListener('keypress', function ( event ) {  
-//    var key = event.keyCode;
-//     if (key === 32) {
-//       event.preventDefault();
-//     }
-// });
-
-function validateInput(input) {
-  input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
-}
+nameInput.addEventListener('keypress', function ( event ) {  
+   var key = event.keyCode;
+    if (key === 32) {
+      event.preventDefault();
+    }
+});
 
 const register = () => {
   var username = document.getElementById('newName').value.trim()
@@ -119,6 +110,9 @@ const register = () => {
 
           .then((docRef) => {
 
+            setTimeout(() => {
+              checkUser()
+            }, 500)
             console.log("New user added");
           })
           .catch((error) => {
@@ -126,10 +120,6 @@ const register = () => {
           });
 
         overflow.style.display = 'none'
-        setTimeout(() => {
-          checkUser()
-        }, 500)
-
       } else if (!password) {
         document.getElementById('message').style.color = 'red';
         document.getElementById('message').innerHTML = "Password can not be empty";
@@ -178,11 +168,8 @@ const login = () => {
 }
 
 const logout = () => {
-  localStorage.removeItem('username');
-  const linklist = document.querySelector('#linkList')
-  linklist.style.display = 'none'
+  localStorage.setItem('username', '');
   dropDown.style.display = 'none'
   dropDown.style.height = '0px'
   checkUser()
-  window.location.replace("/");
 }

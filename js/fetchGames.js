@@ -16,7 +16,7 @@ function fetchData(game) {
 
   gameName = game;
   localStorage.setItem('game', game)
-  //showRatings(game)
+  showRatings(game)
 
   xhr.onload = function () {
     let data = JSON.parse(xhr.response);

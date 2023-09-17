@@ -19,13 +19,10 @@ function getMachineId() {
 }
 function getUsername() {
   let username = localStorage.getItem("username").trim();
-  const linklist = document.querySelector('#linkList')
 
   if (!username) {
-    linklist.style.display = 'none'
     return false;
   }
-  linklist.style.display = 'flex'
   return username;
 }
 
@@ -33,12 +30,11 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 
 let date = new Date();
-let formattedDate = date.toLocaleDateString("en-US", {
+let formattedDate = date.toLocaleDateString("ru-RU", {
   day: "2-digit",
   month: "2-digit",
   year: "numeric"
 });
-formattedDate = `${formattedDate} ${date.toString().slice(16, 33)}`.replaceAll('/', '.')
 
 const saveData = (game, percentage, time) => {
   var percents = +percentage.slice(0, -1);
@@ -46,18 +42,18 @@ const saveData = (game, percentage, time) => {
   db.collection("tests")
     .doc(game)
     .collection(getUsername() ? getUsername() : getMachineId())
-    .doc(formattedDate)
+    .doc(`${formattedDate} ${date.toString().slice(16, 33)}`)
     .set({
       game: game,
       correctAnswers: percents,
       timeSpent: time,
-      timeAt: formattedDate
+      timeAt: date.toString().slice(16, -12)
     })
     .then((docRef) => {
       if (getUsername()) {
         db.collection("users")
           .doc(getUsername())
-          .update({ lastVisit: formattedDate });
+          .update({ lastVisit: `${new Date()}` });
 
         if (percents === 100) {
           var docExist = db.collection(game).doc(getUsername());
@@ -70,14 +66,14 @@ const saveData = (game, percentage, time) => {
                   db.collection(game).doc(getUsername()).set({
                     username: getUsername(),
                     time: time,
-                    timeCode: formattedDate
+                    timeCode: `${formattedDate} ${date.toString().slice(16, 33)}`
                   });
                 }
               } else {
                 db.collection(game).doc(getUsername()).set({
                   username: getUsername(),
                   time: time,
-                  timeCode: formattedDate
+                  timeCode: `${formattedDate} ${date.toString().slice(16, 33)}`
                 });
               }
             })
@@ -92,65 +88,65 @@ const saveData = (game, percentage, time) => {
       console.error("Error adding document: ", error);
     });
 
-  // var docDaily = db.collection("dailyUsage").doc(formattedDate).collection(getUsername() ? getUsername() : getMachineId()).doc(game);
-  // var docDailyByGame = db.collection("dailyUsageByGame").doc(formattedDate).collection(game).doc('totalTries');
+  var docDaily = db.collection("dailyUsage").doc(formattedDate).collection(getUsername() ? getUsername() : getMachineId()).doc(game);
+  var docDailyByGame = db.collection("dailyUsageByGame").doc(formattedDate).collection(game).doc('totalTries');
 
-  // docDailyByGame.get().then((doc) => {
-  //   if (doc.exists) {
-  //     var usageValueByGame = Number(doc.data().usage)
+  docDailyByGame.get().then((doc) => {
+    if (doc.exists) {
+      var usageValueByGame = Number(doc.data().usage)
 
-  //     db.collection("dailyUsageByGame")
-  //       .doc(formattedDate)
-  //       .collection(game)
-  //       .doc('totalTries')
-  //       .set({ usage: getUsername() === 'test' ? usageValueByGame : usageValueByGame + 1 })
-  //       .then((docRef) => {
-  //         console.log("Document written");
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error adding document: ", error);
-  //       });
+      db.collection("dailyUsageByGame")
+        .doc(formattedDate)
+        .collection(game)
+        .doc('totalTries')
+        .set({ usage: getUsername() === 'test' ? usageValueByGame : usageValueByGame + 1 })
+        .then((docRef) => {
+          console.log("Document written");
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
 
-  //   } else {
-  //     db.collection("dailyUsageByGame")
-  //       .doc(formattedDate)
-  //       .collection(game)
-  //       .doc('totalTries')
-  //       .set({ usage: getUsername() === 'test' ? 0 : 1 })
-  //       .then((docRef) => {
-  //         console.log("Document written");
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error adding document: ", error);
-  //       });
-  //   }
-  // })
+    } else {
+      db.collection("dailyUsageByGame")
+        .doc(formattedDate)
+        .collection(game)
+        .doc('totalTries')
+        .set({ usage: getUsername() === 'test' ? 0 : 1 })
+        .then((docRef) => {
+          console.log("Document written");
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
+    }
+  })
 
-  // docDaily.get().then((doc) => {
-  //   if (doc.exists) {
-  //     var usageValue = Number(doc.data().usage)
-  //     db.collection("dailyUsage")
-  //       .doc(formattedDate)
-  //       .collection(getUsername() ? getUsername() : getMachineId())
-  //       .doc(game).set({ usage: usageValue + 1 })
-  //       .then((docRef) => {
-  //         console.log("Document written");
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error adding document: ", error);
-  //       });
+  docDaily.get().then((doc) => {
+    if (doc.exists) {
+      var usageValue = Number(doc.data().usage)
+      db.collection("dailyUsage")
+        .doc(formattedDate)
+        .collection(getUsername() ? getUsername() : getMachineId())
+        .doc(game).set({ usage: usageValue + 1 })
+        .then((docRef) => {
+          console.log("Document written");
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
 
-  //   } else {
-  //     db.collection("dailyUsage")
-  //       .doc(formattedDate)
-  //       .collection(getUsername() ? getUsername() : getMachineId())
-  //       .doc(game).set({ usage: 1 })
-  //       .then((docRef) => {
-  //         console.log("Document written");
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error adding document: ", error);
-  //       });
-  //   }
-  // })
+    } else {
+      db.collection("dailyUsage")
+        .doc(formattedDate)
+        .collection(getUsername() ? getUsername() : getMachineId())
+        .doc(game).set({ usage: 1 })
+        .then((docRef) => {
+          console.log("Document written");
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
+    }
+  })
 };
