@@ -1,5 +1,3 @@
-let completedBets = [];
-
 function hideEmpty() {
   var bet = Array.from(document.querySelectorAll(".bet"));
   bet.forEach((bet) => {
@@ -115,4 +113,29 @@ function goBack() {
   localStorage.removeItem('game')
   showRatings('')
   document.location.href = "/";
+}
+
+const donateOverflow = document.getElementById('donation-overflow')
+const showDonateOverflow = () => {
+  donateOverflow.style.display = 'flex'
+}
+
+document.querySelector('.copy-button').addEventListener('click', function() {
+  var textField = document.querySelector('.text-field');
+  textField.select();
+  document.execCommand('copy');
+});
+
+const usdtInfo = document.getElementById('usdt-info')
+const showUsdtInfo = () => {
+  usdtInfo.style.display = 'flex'
+}
+
+const bankInfo = document.getElementById('bank-info')
+const showBankInfo = () => {
+  bankInfo.style.display = 'flex'
+}
+
+const closeInfo = (element) => {
+  element.parentElement.style.display = "none"
 }

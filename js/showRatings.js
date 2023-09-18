@@ -65,7 +65,7 @@ const showRatings = (game) => {
               // doc.data() is never undefined for query doc snapshots
               var element = {}
               element.correctAnswers = doc.data().correctAnswers
-              element.time = doc.data().time
+              element.time = doc.data().timeSpent
 
               personalChart.push(element)
 
