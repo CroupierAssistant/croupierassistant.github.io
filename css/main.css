@@ -1248,10 +1248,12 @@ div#donation-modal p {
   height: 40px;
   flex: 1;
   border: none;
+  border-radius: 0;
   text-align: center;
 }
 
 .copy-button {
+  border-radius: 0;
   height: 40px;
   width: 100px;
   background-color: #456d97;
