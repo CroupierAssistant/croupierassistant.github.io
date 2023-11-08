@@ -138,7 +138,8 @@
             <button class="copy-button">COPY</button>
           </div>
           <p>
-            If you have account in any Georgian bank, you can use this method, just indicate this account number as the recipient.
+            If you have account in any Georgian bank, you can use this method,
+            just indicate this account number as the recipient.
           </p>
 
           <div class="close-button" onclick="closeInfo(this)">Close</div>
@@ -149,6 +150,47 @@
         </div>
       </div>
     </div>
+
+    <div id="application-overflow">
+      <div id="application-modal">
+        <br />
+        <h2>Hi there!</h2>
+        <br />
+        <p>Mobile application is coming!</p>
+        <br />
+        <p>
+          While I'm putting on the finishing touches, I'd love to hear your
+          feedback. Please download the app and share your thoughts with me at
+          <a style="color: #fff;" href="mailto:croupierassistant@gmail.com"
+            >croupierassistant@gmail.com</a
+          >.
+        </p>
+        <br />
+        <p>
+          As a token of our appreciation, the first testers will receive special
+          gifts, including complimentary subscriptions. And a big thank you to
+          those who have supported me through donations! 😉
+        </p>
+
+        <br />
+        <p>
+          Please note that the test version is currently only available for
+          Android devices. iOS application is coming soon with the Google Play release.
+        </p>
+
+        <br />
+
+        <a style="text-align: center;" href="caapp.apk" download="caapp.apk"
+          ><img style="height: 70px;" src="img/download.png" alt=""></a
+        >
+
+        <br />
+        <div class="button-container">
+          <button class="back-button" onclick="goBack()">Go back</button>
+        </div>
+      </div>
+    </div>
+
     <div id="overflow">
       <div id="loginPopup">
         <h2>WELCOME</h2>
@@ -207,6 +249,10 @@
       <a id="donation" onclick="showDonateOverflow()" href="#"
         >Give a tip<img src="./img/tip.png"
       /></a>
+      <a id="application" onclick="showAppOverflow()" href="#"
+        >Mobile Application<img src="./img/android.png"
+        /></a
+      >
       <a id="roulette-pictures" onclick="fetchData(this.id)" href="#"
         >Roulette pictures <img src="./img/casino_roulette_icon.png"
       /></a>

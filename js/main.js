@@ -120,6 +120,11 @@ const showDonateOverflow = () => {
   donateOverflow.style.display = 'flex'
 }
 
+const appOverflow = document.getElementById('application-overflow')
+const showAppOverflow = () => {
+  appOverflow.style.display = 'flex'
+}
+
 document.querySelector('.copy-button').addEventListener('click', function() {
   var textField = document.querySelector('.text-field');
   textField.select();
