@@ -50,58 +50,6 @@ const showRatings = (game) => {
         </div>`
       })
 
-      let isInChart = newChartFiltered.some(findInChart);
-
-      function findInChart(value) {
-        return value.name === localStorage.getItem('username');
-      }
-
-      if (!isInChart) {
-        db.collection('tests').doc(game).collection(localStorage.getItem('username'))
-          .get()
-          .then((querySnapshot) => {
-            var personalChart = []
-            querySnapshot.forEach((doc) => {
-              // doc.data() is never undefined for query doc snapshots
-              var element = {}
-              element.correctAnswers = doc.data().correctAnswers
-              element.time = doc.data().timeSpent
-
-              personalChart.push(element)
-
-            });
-
-
-            function comparePersonalBest(a, b) {
-              if (a.correctAnswers > b.correctAnswers) {
-                return -1;
-              }
-              if (a.correctAnswers < b.correctAnswers) {
-                return 1;
-              }
-              return 0;
-            }
-            personalBest = personalChart.sort(comparePersonalBest)
-
-            var newRatingsItem = document.createElement('div')
-            newRatingsItem.classList.add("ratings-item")
-            document.getElementById('ratings').appendChild(newRatingsItem)
-
-            newRatingsItem.outerHTML = `
-              <div class="ratings-item ratings-personal">
-                <div class="ratings-name">
-                  Your personal best is ${personalBest[0].correctAnswers}% in ${personalBest[0].time}
-                </div >
-                
-              </div > `
-          })
-          .catch((error) => {
-            console.log("Error getting documents: ", error);
-          });
-
-
-
-      }
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
