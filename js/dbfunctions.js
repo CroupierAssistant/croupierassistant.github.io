@@ -38,43 +38,45 @@ let formattedDate = date.toLocaleDateString("ru-RU", {
 
 const saveData = (game, percentage, time) => {
   var percents = +percentage.slice(0, -1);
+  const username = getUsername();
+  const userId = username ? username : getMachineId();
+
+  const currentDate = formattedDate + ' ' + date.toString().slice(16, 33);
+  const userData = {
+    game: game,
+    correctAnswers: percents,
+    timeSpent: time,
+    timeAt: date.toString().slice(16, -12)
+  };
+
+  const usersRef = db.collection("users").doc(username);
 
   db.collection("tests")
     .doc(game)
-    .collection(getUsername() ? getUsername() : getMachineId())
-    .doc(`${formattedDate} ${date.toString().slice(16, 33)}`)
-    .set({
-      game: game,
-      correctAnswers: percents,
-      timeSpent: time,
-      timeAt: date.toString().slice(16, -12)
-    })
-    .then((docRef) => {
-      if (getUsername()) {
-        db.collection("users")
-          .doc(getUsername())
-          .update({ lastVisit: `${new Date()}` });
+    .collection(userId)
+    .doc(currentDate)
+    .set(userData)
+    .then(() => {
+      if (username) {
+        usersRef.update({ lastVisit: `${new Date()}` });
 
         if (percents === 100) {
-          var docExist = db.collection(game).doc(getUsername());
+          const gameDocRef = db.collection(game).doc(username);
 
-          docExist
-            .get()
+          gameDocRef.get()
             .then((doc) => {
+              const gameData = {
+                username: username,
+                time: time,
+                timeCode: currentDate
+              };
+
               if (doc.exists) {
                 if (doc.data().time > time) {
-                  db.collection(game).doc(getUsername()).set({
-                    username: getUsername(),
-                    time: time,
-                    timeCode: `${formattedDate} ${date.toString().slice(16, 33)}`
-                  });
+                  gameDocRef.set(gameData);
                 }
               } else {
-                db.collection(game).doc(getUsername()).set({
-                  username: getUsername(),
-                  time: time,
-                  timeCode: `${formattedDate} ${date.toString().slice(16, 33)}`
-                });
+                gameDocRef.set(gameData);
               }
             })
             .catch((error) => {
@@ -87,5 +89,5 @@ const saveData = (game, percentage, time) => {
     .catch((error) => {
       console.error("Error adding document: ", error);
     });
-
 };
+

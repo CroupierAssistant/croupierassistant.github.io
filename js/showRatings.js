@@ -1,57 +1,43 @@
 const showRatings = (game) => {
-  if (game === '') return
+  if (game === '') return;
 
-  document.getElementById('ratings').innerHTML = `
+  const ratingsElement = document.getElementById('ratings');
+  ratingsElement.innerHTML = `
     <div class="ratings-header"><h2>TOP-10</h2></div>
     <div class="ratings-description">
       In order to get to TOP-10 you have to be logged in and get 100% in
       specific test
     </div>
-  `
+  `;
 
-  db.collection(game)
-    .get()
+  const query = db.collection(game)
+    .orderBy('time')
+    .limit(10);
+
+  query.get()
     .then((querySnapshot) => {
-      var chart = []
+      const chart = [];
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        var element = {}
-        element.name = doc.data().username
-        element.time = doc.data().time
-
-        chart.push(element)
+        const element = {
+          name: doc.data().username,
+          time: doc.data().time
+        };
+        chart.push(element);
       });
-      function compare(a, b) {
-        if (a.time < b.time) {
-          return -1;
-        }
-        if (a.time > b.time) {
-          return 1;
-        }
-        return 0;
-      }
 
-      const newChart = chart.sort(compare);
-      const newChartFiltered = newChart.filter(person => person.name !== 'test')
-      if (newChartFiltered.length > 10) newChartFiltered.length = 10
-
-      newChartFiltered.map((item, index) => {
-        var newRatingsItem = document.createElement('div')
-        newRatingsItem.classList.add("ratings-item")
-        document.getElementById('ratings').appendChild(newRatingsItem)
-
-        newRatingsItem.outerHTML = `
-        <div class="ratings-item">
-          <div class="ratings-name">
-            <span class="ratings-index" data-index=${index + 1}>${index + 1}</span>
-            ${item.name}
-          </div>
-          <div class="ratings-time">${item.time}</div>
-        </div>`
-      })
-
+      chart.forEach((item, index) => {
+        const newRatingsItem = document.createElement('div');
+        newRatingsItem.classList.add("ratings-item");
+        newRatingsItem.innerHTML = `
+            <div class="ratings-name">
+              <span class="ratings-index" data-index=${index + 1}>${index + 1}</span>
+              ${item.name}
+            </div>
+            <div class="ratings-time">${item.time}</div>`;
+        ratingsElement.appendChild(newRatingsItem);
+      });
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
     });
-}
+};

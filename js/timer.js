@@ -51,11 +51,9 @@ function onTimesUp() {
 }
 
 function startTimer() {
-  // Get the current time
   let startTime = new Date();
 
   timerInterval = setInterval(() => {
-    // Calculate the elapsed time
     timePassed = new Date() - startTime;
     timeLeft = TIME_LIMIT - timePassed;
     document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft, 'short');
@@ -66,10 +64,8 @@ function startTimer() {
       timeLeft = 0
       timePassed = TIME_LIMIT
       clearInterval(timerInterval);
-      // onTimesUp();
       testTotal();
     }
-    console.log(formatTime(timeLeft), formatTime(timePassed, 'short'));
   }, 10);
 }
 
@@ -83,16 +79,6 @@ function formatTime(time, mode) {
     : `${minutes}:${seconds}.${milliseconds}`
 
 }
-// function formatTime(time) {
-//   var minutes = Math.floor(time / 60000);
-//   var seconds = Math.floor((time % 60000) / 1000);
-
-//   if (seconds < 10) {
-//     seconds = `0${seconds}`;
-//   }
-
-//   return `${minutes}:${seconds}`;
-// }
 
 function setRemainingPathColor(timeLeft) {
   let { alert, warning, info } = COLOR_CODES;
