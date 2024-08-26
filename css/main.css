@@ -1189,6 +1189,7 @@ div#donation-modal, div#application-modal {
   align-content: center;
   justify-content: flex-start;
   color: #fff;
+  overflow-y: auto;
 }
 
 div#donation-modal p {
