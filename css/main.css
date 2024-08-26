@@ -1173,7 +1173,7 @@ div#application-overflow {
   padding: 10px;
   flex-direction: column;
   align-content: center;
-  overflow-y: auto;
+/*   overflow-y: auto; */
 }
 
 div#donation-modal, div#application-modal {
