@@ -120,27 +120,6 @@ const showDonateOverflow = () => {
   donateOverflow.style.display = 'flex'
 }
 
-const appOverflow = document.getElementById('application-overflow')
-const showAppOverflow = () => {
-  appOverflow.style.display = 'flex'
-}
-
-document.querySelector('.copy-button').addEventListener('click', function() {
-  var textField = document.querySelector('.text-field');
-  textField.select();
-  document.execCommand('copy');
-});
-
-const usdtInfo = document.getElementById('usdt-info')
-const showUsdtInfo = () => {
-  usdtInfo.style.display = 'flex'
-}
-
-const bankInfo = document.getElementById('bank-info')
-const showBankInfo = () => {
-  bankInfo.style.display = 'flex'
-}
-
 const closeInfo = (element) => {
   element.parentElement.style.display = "none"
 }
