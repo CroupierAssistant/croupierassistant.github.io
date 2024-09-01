@@ -91,3 +91,19 @@ const saveData = (game, percentage, time) => {
     });
 };
 
+const donateClicked = () => {
+  const username = getUsername();
+  const userId = username ? username : getMachineId();
+
+  const currentDate = formattedDate + ' ' + date.toString().slice(16, 33);
+
+  db.collection("donateClicked")
+    .doc(userId)
+    .set({"date": currentDate})
+    .then(() => {
+      console.log("Document written");
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
+    });
+};
